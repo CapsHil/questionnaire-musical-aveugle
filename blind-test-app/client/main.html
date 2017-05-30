@@ -1,0 +1,102 @@
+<head>
+    <title>Blind Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+</head>
+<body class="w3-light-grey">
+
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-large" style="z-index:4; background-color: #b4b4b4;">
+        <span class="w3-bar-item w3-display-middle w3-bold" style="font-weight: bold; font-size: 40px">BDArmada - Blind Test</span>
+        <span class="w3-bar-item w3-right"><img border="0" height="60" src="images/logo_bda.png" /></span>
+    </div>
+
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-top:65px;">
+
+        <!-- Header -->
+        <header class="w3-container" style="padding-top:22px">
+            Questionnaire Musical Aveugle
+        </header>
+
+        <div class="w3-row-padding w3-margin-bottom">
+            {{> clock}}
+            <div class="w3-half">
+                <div class="w3-container w3-padding-16">
+                    <div class="w3-center"><i class="fa fa-spinner w3-spin w3-xxxlarge"></i></div>
+                    <hr>
+                    <div class="w3-center"><h4>Wait for it...</h4></div>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-bar w3-row-padding w3-center">
+            <p>Who made the point ?</p>
+            {{#each results}}
+                {{> selectWinner}}
+            {{/each}}
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>Quick results</h5>
+            {{#each results}}
+                {{>quickScore}}
+            {{/each}}
+        </div>
+        <hr>
+        <hr>
+        <div class="w3-container">
+            <h5>Detailed results</h5>
+            <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                {{#each results}}
+                    {{> detailedScore}}
+                {{/each}}
+            </table><br>
+        </div>
+    </div>
+
+</body>
+
+<template name="clock">
+    <div class="w3-half">
+        <div class="w3-container w3-red w3-padding-16">
+            <div class="w3-left"><i class="fa fa-clock-o w3-xxxlarge"></i></div>
+            <div class="w3-center">
+                <h3>{{timer}}</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Let's play</h4>
+        </div>
+    </div>
+</template>
+
+<template name="selectWinner">
+    <button class="w3-button w3-{{color}}" value="{{_id}}">
+        {{playerName}}
+    </button>
+</template>
+
+<template name="quickScore">
+    <p>{{playerName}}</p>
+    <div class="w3-grey">
+        <div class="w3-container w3-center w3-padding w3-{{color}}" style="width:{{scoreRate}}%">{{scoreRate}}%</div>
+    </div>
+</template>
+
+<template name="detailedScore">
+    <tr>
+        <td>{{playerName}}</td>
+        <td>{{scoreRate}}%</td>
+        <td>{{score}} pts</td>
+    </tr>
+</template>
+
+
